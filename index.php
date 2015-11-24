@@ -2,11 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>Using Echo</title>
+	<title></title>
 </head>
 <body>
-	<!-- Script 1.2 - first.php -->
-	<p>This is standard HTML.</p>
 
 <?php
 	echo '<h1>This is PHP</h1>';
