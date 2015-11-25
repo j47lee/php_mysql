@@ -2,6 +2,14 @@
   $page_title = "Calculator";
   include('includes/header.html');
 
+
+
+  function calculate_trip_cost($miles, $mpg, $ppg) {
+    $gallons = $_POST['distance'] / $_POST['efficiency'];
+    $dollars = $gallons * $_POST['gallon_price'];
+    return $dollars;
+  }// end function
+
   //form submission
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //form validation
@@ -10,11 +18,10 @@
       && is_numeric($_POST['gallon_price'])
       && is_numeric($_POST['efficiency'])){
         //calculation
-        $gallons = $_POST['distance'] / $_POST['efficiency'];
-        $dollars = $gallons * $_POST['gallon_price'];
+        calculate_trip_cost($_POST['distance'], $_POST['efficiency'], $_POST['gallon_price']);
         $hours = $_POST['distance']/65;
 
-        echo '<h1>Total Estimated Cost</h1><p>The total cost of driving ' . $_POST['distance'] . ' miles, averaging ' . $_POST['efficiency'] . ' miles per gallon, and paying an average of $' . $_POST['gallon_price'] . 'per gallon, is $' . number_format ($dollars, 2) . '. If you drive at an average of 65 miles per hour, the trip will take approximately ' . number_format($hours, 2) . ' hours.</p>';
+        echo '<h1>Total Estimated Cost</h1><p>The total cost of driving ' . $_POST['distance'] . ' miles, averaging ' . $_POST['efficiency'] . ' miles per gallon, and paying an average of $' . $_POST['gallon_price'] . ' per gallon, is $' . number_format ($dollars, 2) . '. If you drive at an average of 65 miles per hour, the trip will take approximately ' . number_format($hours, 2) . ' hours.</p>';
 
     } else {
       echo '<h1>Error!</h1><p class="error">Please enter a valid distance, price per gallon, and fuel efficiency.</p>';
@@ -22,14 +29,14 @@
   } //end form submission
 
   function create_gallon_radio($value, $name = 'gallon_price'){
-
     echo '<input type="radio" name="' . $name . '" value="' . $value . '"';
     if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="$value") {
       echo "checked='checked'";
     }
     echo '/> ' . $value;
-
   } //end function
+
+
 ?>
 
 <h1>Trip Cost Calculator</h1>
