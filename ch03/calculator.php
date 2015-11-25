@@ -20,24 +20,52 @@
       echo '<h1>Error!</h1><p class="error">Please enter a valid distance, price per gallon, and fuel efficiency.</p>';
     }//end form validation
   } //end form submission
-
 ?>
 
 <h1>Trip Cost Calculator</h1>
 <form action="calculator.php" method="post">
-  <div>Distance: <input type="text" name="distance"></div>
+  <div>Distance:
+    <input type="text" name="distance" value="<?php if(isset($_POST['distance'])){echo $_POST['distance'];} ?>">
+  </div>
   <div>Ave. price per gallon:
-    <input type="radio" name="gallon_price" value="3.00" /> 3.00
-    <input type="radio" name="gallon_price" value="3.50" /> 3.50
-    <input type="radio" name="gallon_price" value="4.00" /> 4.00
+    <input type="radio" name="gallon_price" value="3.00" <?php
+      if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="3.00") {
+        echo "checked='checked'";
+      }
+    ?>/> 3.00
+    <input type="radio" name="gallon_price" value="3.50" <?php
+      if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="3.50") {
+        echo "checked='checked'";
+      }
+    ?>/> 3.50
+    <input type="radio" name="gallon_price" value="4.00" <?php
+      if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="4.00") {
+        echo "checked='checked'";
+      }
+    ?>/> 4.00
   </div>
   <div>Fuel Efficiency:
     <select name="efficiency">
-      <option value="10">Terrible</option>
-      <option value="20">Decent</option>
-      <option value="30">Good</option>
-      <option value="40">Very Good</option>
-      <option value="50">Outstanding</option>
+      <option value="10" <?php
+        if (isset($_POST['efficiency']) && $_POST['efficiency']==="10") {
+          echo "selected=selected";
+        }
+      ?>>Terrible</option>
+      <option value="20" <?php
+        if (isset($_POST['efficiency']) && $_POST['efficiency']==="20") {
+          echo "selected=selected";
+        }
+      ?>>Decent</option>
+      <option value="30" <?php
+        if (isset($_POST['efficiency']) && $_POST['efficiency']==="30") {
+          echo "selected=selected";
+        }
+      ?>>Good</option>
+      <option value="40" <?php
+        if (isset($_POST['efficiency']) && $_POST['efficiency']==="40") {
+          echo "selected=selected";
+        }
+      ?>>Outstanding</option>
     </select>
   </div>
   <div><input type="submit" name="submit" value="Calculate!"></div>
