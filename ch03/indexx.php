@@ -4,6 +4,12 @@ $php_title = "Welcome To This Site!";
 
 include('includes/header.html');
 
+//creating a function
+function create_ad(){
+  echo "<p class='ad'>This is an advertisement. This is an annoying advertisement.</p>";
+}
+create_ad();
+
 ?>
 
 <h1>Content Header</h1>
@@ -12,6 +18,7 @@ include('includes/header.html');
 
 <?php
 
+create_ad();
 include('includes/footer.html');
 
 ?>

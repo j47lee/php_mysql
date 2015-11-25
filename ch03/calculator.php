@@ -20,6 +20,16 @@
       echo '<h1>Error!</h1><p class="error">Please enter a valid distance, price per gallon, and fuel efficiency.</p>';
     }//end form validation
   } //end form submission
+
+  function create_gallon_radio($value, $name = 'gallon_price'){
+
+    echo '<input type="radio" name="' . $name . '" value="' . $value . '"';
+    if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="$value") {
+      echo "checked='checked'";
+    }
+    echo '/> ' . $value;
+
+  } //end function
 ?>
 
 <h1>Trip Cost Calculator</h1>
@@ -28,21 +38,13 @@
     <input type="text" name="distance" value="<?php if(isset($_POST['distance'])){echo $_POST['distance'];} ?>">
   </div>
   <div>Ave. price per gallon:
-    <input type="radio" name="gallon_price" value="3.00" <?php
-      if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="3.00") {
-        echo "checked='checked'";
-      }
-    ?>/> 3.00
-    <input type="radio" name="gallon_price" value="3.50" <?php
-      if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="3.50") {
-        echo "checked='checked'";
-      }
-    ?>/> 3.50
-    <input type="radio" name="gallon_price" value="4.00" <?php
-      if (isset($_POST['gallon_price']) && $_POST['gallon_price']==="4.00") {
-        echo "checked='checked'";
-      }
-    ?>/> 4.00
+    <?php
+      create_gallon_radio('3.00');
+      create_gallon_radio('3.50');
+      create_gallon_radio('4.00');
+      create_gallon_radio('4.50');
+      create_gallon_radio('5.00');
+    ?>
   </div>
   <div>Fuel Efficiency:
     <select name="efficiency">
